@@ -1,0 +1,44 @@
+{
+  "name": "defi-tutorial",
+  "version": "0.1.0",
+  "description": "DeFi Token Staking App",
+  "author": "Patrick Collins and Matt Durkin",
+  "dependencies": {
+    "@chainlink/contracts": "^0.0.9",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@openzeppelin/contracts": "^3.2.0",
+    "@truffle/hdwallet-provider": "^1.0.44",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.7",
+    "@usedapp/core": "^0.3.24",
+    "chai": "4.2.0",
+    "chai-as-promised": "7.1.1",
+    "chai-bignumber": "3.0.0",
+    "react": "^16.13.1",
+    "react-dom": "16.13.1",
+    "react-scripts": "^4.0.3",
+    "truffle": "5.1.39",
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "resolutions": {
+    "@ethersproject/abi": "5.2.0",
+    "@ethersproject/contracts": "5.2.0",
+    "ethers": "5.2.0"
+  }
+}

@@ -1,0 +1,28 @@
+# exclude SafeMath when calculating test coverage
+# https://eth-brownie.readthedocs.io/en/v1.10.3/config.html#exclude_paths
+reports:
+  exclude_contracts:
+    - SafeMath
+dependencies:
+  - smartcontractkit/chainlink-brownie-contracts@1.0.2
+  - OpenZeppelin/openzeppelin-contracts@3.4.0
+compiler:
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.0.2'
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@3.4.0'
+autofetch_sources: True
+dotenv: .env
+networks:
+  rinkeby:
+    link_token: '0x01BE23585060835E02B77ef475b0Cc51aA1e0709'
+    eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+    dai_usd_price_feed: '0x2bA49Aaa16E6afD2a993473cfB70Fa8559B523cF'
+  kovan:
+    link_token: '0xa36085F69e2889c224210F603D836748e7dC0088'
+    weth_token: '0xd0a1e359811322d97991e03f863a0c30c2cf029c'
+    eth_usd_price_feed: '0x9326BFA02ADD2366b30bacB125260Af641031331'
+    dai_usd_price_feed: '0x777A68032a88E5A84678A77Af2CD65A7b3c0775a'
+wallets:
+  from_key: ${PRIVATE_KEY}
+  from_mnemonic: ${MNEMONIC}
