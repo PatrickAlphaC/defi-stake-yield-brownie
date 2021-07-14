@@ -1,4 +1,4 @@
-created with `create-react-app front_end_again --template typescript`
+created with `create-react-app front_end --template typescript`
 
 To run:
 ```
