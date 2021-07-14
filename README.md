@@ -3,7 +3,7 @@
 <br/>
 <p align="center">
 <a href="https://chain.link" target="_blank">
-<img src="./web-image.png" width="225" alt="Full Stack Example">
+<img src="./web-image.png" width="500" alt="Full Stack Example">
 </a>
 </p>
 <br/>
