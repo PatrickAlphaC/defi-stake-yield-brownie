@@ -22,11 +22,12 @@ And more!
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Useage](#useage)
+  - [Scripts](#scripts)
   - [Front end](#front-end)
   - [Testing](#testing)
   - [Linting](#linting)
-  - [Resources](#resources)
-  - [License](#license)
+- [Resources](#resources)
+- [License](#license)
 
 ## Prerequisites
 
@@ -84,6 +85,8 @@ export ETHERSCAN_TOKEN=<YOUR_TOKEN>
 
 # Useage
 
+## Scripts
+
 ```bash
 brownie run scripts/deploy.py
 ```
@@ -116,7 +119,7 @@ autoflake --in-place --remove-unused-variables -r .
 black .
 ```
 
-## Resources
+# Resources
 
 To get started with Brownie:
 
@@ -133,6 +136,6 @@ Shoutout to [Gregory from Dapp University](https://www.dappuniversity.com/) for 
 
 Any questions? Join our [Discord](https://discord.gg/2YHSAey) or open an issue. 
 
-## License
+# License
 
 This project is licensed under the [MIT license](LICENSE).
