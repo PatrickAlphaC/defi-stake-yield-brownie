@@ -1,4 +1,4 @@
-# nft-mix
+# defi-stake-yield-brownie
 
 <br/>
 <p align="center">
@@ -17,7 +17,7 @@ This is a repo to build your own full stack defi staking application for yield f
 
 And more!
 
-- [nft-mix](#nft-mix)
+- [defi-stake-yield-brownie](#defi-stake-yield-brownie)
   - [Summary](#summary)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
