@@ -2981,10 +2981,10 @@
     "@typescript-eslint/types" "4.28.2"
     eslint-visitor-keys "^2.0.0"
 
-"@usedapp/core@^0.3.24":
-  version "0.3.24"
-  resolved "https://registry.yarnpkg.com/@usedapp/core/-/core-0.3.24.tgz#621d72d96563488941311b5bed40be3db3e16797"
-  integrity sha512-v1KXQphjmmY+gdkRxf3PZVVTIfjUyERNa2HB5g0zh63pSSYC3aQV3nCkYcrRgNSnXMvtN4pc1dsAmHPMVd/4HA==
+"@usedapp/core@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@usedapp/core/-/core-0.4.1.tgz#0ab7bc9184b38b616ea2207df31d21a97e2cdc40"
+  integrity sha512-7rcZeL022Ff5UgfWWhlHh2ibNASccjAe9EkWOwn7rTz6Krs9PTgQnWPzKwCtGOVG0ywaGT3XnMBVa3A5CCKyaA==
   dependencies:
     "@types/react" "17.0.1"
     "@web3-react/core" "6.1.1"
@@ -7231,6 +7231,11 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
+
+fs@^0.0.1-security:
+  version "0.0.1-security"
+  resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+  integrity sha1-invTcYa23d84E/I4WLV+yq9eQdQ=
 
 fsevents@^1.2.7:
   version "1.2.13"
@@ -15376,7 +15381,7 @@ yallist@^4.0.0:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
-yaml@^1.10.0, yaml@^1.7.2:
+yaml@^1.10.0, yaml@^1.10.2, yaml@^1.7.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
   integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==

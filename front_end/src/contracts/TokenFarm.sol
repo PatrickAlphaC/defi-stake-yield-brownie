@@ -135,4 +135,3 @@ contract TokenFarm is ChainlinkClient, Ownable {
     }
 }
 
-//18446744073709555618

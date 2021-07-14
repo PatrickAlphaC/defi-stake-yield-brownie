@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { SliderInput } from "../../components";
-import { useEthers, useTokenBalance, useNotifications } from "@usedapp/core";
-import { formatUnits } from "@ethersproject/units";
+import React, { useEffect, useState } from "react"
+import { SliderInput } from "../../components"
+import { useEthers, useTokenBalance, useNotifications } from "@usedapp/core"
+import { formatUnits } from "@ethersproject/units"
 import {
   Button,
   CircularProgress,
   Snackbar,
   makeStyles,
-} from "@material-ui/core";
-import { Token } from "../Main";
-import { useStakeTokens } from "../../hooks";
-import { utils } from "ethers";
-import Alert from "@material-ui/lab/Alert";
+} from "@material-ui/core"
+import { Token } from "../Main"
+import { useStakeTokens } from "../../hooks"
+import { utils } from "ethers"
+import Alert from "@material-ui/lab/Alert"
+import "../../App.css"
 
+// This is the typescript way of saying this compent needs this type
 export interface StakeFormProps {
-  token: Token;
+  token: Token
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -29,40 +31,43 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     maxWidth: "400px",
   },
-}));
+}))
 
+// token is getting passed in as a prop
+// in the ping brackets is an object/variable 
+// That object is of the shape StakeFormProps
 export const StakeForm = ({ token }: StakeFormProps) => {
-  const { address: tokenAddress, name } = token;
+  const { address: tokenAddress, name } = token
 
-  const { account } = useEthers();
-  const tokenBalance = useTokenBalance(tokenAddress, account);
-  const { notifications } = useNotifications();
+  const { account } = useEthers()
+  const tokenBalance = useTokenBalance(tokenAddress, account)
+  const { notifications } = useNotifications()
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   const { send: stakeTokensSend, state: stakeTokensState } =
-    useStakeTokens(tokenAddress);
+    useStakeTokens(tokenAddress)
 
   const formattedTokenBalance: number = tokenBalance
     ? parseFloat(formatUnits(tokenBalance, 18))
-    : 0;
+    : 0
 
   const handleStakeSubmit = () => {
-    const amountAsWei = utils.parseEther(amount.toString());
-    return stakeTokensSend(amountAsWei.toString());
-  };
+    const amountAsWei = utils.parseEther(amount.toString())
+    return stakeTokensSend(amountAsWei.toString())
+  }
 
   const [amount, setAmount] =
-    useState<number | string | Array<number | string>>(0);
+    useState<number | string | Array<number | string>>(0)
 
   const [showErc20ApprovalSuccess, setShowErc20ApprovalSuccess] =
-    useState(false);
-  const [showStakeTokensSuccess, setShowStakeTokensSuccess] = useState(false);
+    useState(false)
+  const [showStakeTokensSuccess, setShowStakeTokensSuccess] = useState(false)
 
   const handleCloseSnack = () => {
-    showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
-    showStakeTokensSuccess && setShowStakeTokensSuccess(false);
-  };
+    showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false)
+    showStakeTokensSuccess && setShowStakeTokensSuccess(false)
+  }
 
   useEffect(() => {
     if (
@@ -72,8 +77,8 @@ export const StakeForm = ({ token }: StakeFormProps) => {
           notification.transactionName === "Approve ERC20 transfer"
       ).length > 0
     ) {
-      !showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(true);
-      showStakeTokensSuccess && setShowStakeTokensSuccess(false);
+      !showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(true)
+      showStakeTokensSuccess && setShowStakeTokensSuccess(false)
     }
 
     if (
@@ -83,15 +88,15 @@ export const StakeForm = ({ token }: StakeFormProps) => {
           notification.transactionName === "Stake tokens"
       ).length > 0
     ) {
-      showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false);
-      !showStakeTokensSuccess && setShowStakeTokensSuccess(true);
+      showErc20ApprovalSuccess && setShowErc20ApprovalSuccess(false)
+      !showStakeTokensSuccess && setShowStakeTokensSuccess(true)
     }
-  }, [notifications, showErc20ApprovalSuccess, showStakeTokensSuccess]);
+  }, [notifications, showErc20ApprovalSuccess, showStakeTokensSuccess])
 
-  const isMining = stakeTokensState.status === "Mining";
+  const isMining = stakeTokensState.status === "Mining"
 
-  const hasZeroBalance = formattedTokenBalance === 0;
-  const hasZeroAmountSelected = parseFloat(amount.toString()) === 0;
+  const hasZeroBalance = formattedTokenBalance === 0
+  const hasZeroAmountSelected = parseFloat(amount.toString()) === 0
 
   return (
     <>
@@ -135,5 +140,5 @@ export const StakeForm = ({ token }: StakeFormProps) => {
         </Alert>
       </Snackbar>
     </>
-  );
-};
+  )
+}

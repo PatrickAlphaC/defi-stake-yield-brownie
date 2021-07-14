@@ -14,7 +14,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
     mapping(address => mapping(address => uint256)) public stakingBalance;
     mapping(address => uint256) public uniqueTokensStaked;
     mapping(address => address) public tokenPriceFeedMapping;
-    address[] allowedTokens;
+    address[] public allowedTokens;
 
     constructor(address _dappTokenAddress) public {
         dappToken = IERC20(_dappTokenAddress);
@@ -34,15 +34,14 @@ contract TokenFarm is ChainlinkClient, Ownable {
     function stakeTokens(uint256 _amount, address token) public {
         // Require amount greater than 0
         require(_amount > 0, "amount cannot be 0");
-        if (tokenIsAllowed(token)) {
-            updateUniqueTokensStaked(msg.sender, token);
-            IERC20(token).transferFrom(msg.sender, address(this), _amount);
-            stakingBalance[token][msg.sender] =
-                stakingBalance[token][msg.sender] +
-                _amount;
-            if (uniqueTokensStaked[msg.sender] == 1) {
-                stakers.push(msg.sender);
-            }
+        require(tokenIsAllowed(token), "Token currently isn't allowed");
+        updateUniqueTokensStaked(msg.sender, token);
+        IERC20(token).transferFrom(msg.sender, address(this), _amount);
+        stakingBalance[token][msg.sender] =
+            stakingBalance[token][msg.sender] +
+            _amount;
+        if (uniqueTokensStaked[msg.sender] == 1) {
+            stakers.push(msg.sender);
         }
     }
 
@@ -66,7 +65,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
             ) {
                 totalValue =
                     totalValue +
-                    getUserStakingBalanceEthValue(
+                    getUserTokenStakingBalanceEthValue(
                         user,
                         allowedTokens[allowedTokensIndex]
                     );
@@ -94,7 +93,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
         }
     }
 
-    function getUserStakingBalanceEthValue(address user, address token)
+    function getUserTokenStakingBalanceEthValue(address user, address token)
         public
         view
         returns (uint256)

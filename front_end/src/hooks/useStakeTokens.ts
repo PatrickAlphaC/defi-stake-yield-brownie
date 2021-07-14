@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { useContractFunction, useEthers } from "@usedapp/core";
-import TokenFarm from "../abis/TokenFarm.json";
-import Erc20 from "../abis/ERC20.json";
-import { utils, constants } from "ethers";
-import { Contract } from "@ethersproject/contracts";
+import { useEffect, useState } from "react"
+import { useContractFunction, useEthers } from "@usedapp/core"
+import TokenFarm from "../abis/TokenFarm.json"
+import Erc20 from "../abis/ERC20.json"
+import { utils, constants } from "ethers"
+import { Contract } from "@ethersproject/contracts"
+import networkMapping from "../abis/map.json"
 
 /**
  * This hook is a bit messy but exposes a 'send' which makes two transactions.
@@ -14,58 +15,58 @@ import { Contract } from "@ethersproject/contracts";
  * @param tokenAddress - The token address of the token we wish to stake
  */
 export const useStakeTokens = (tokenAddress: string) => {
-  const { chainId } = useEthers();
+  const { chainId } = useEthers()
+  const { abi } = TokenFarm
+  const tokenFarmContractAddress = chainId ? networkMapping[String(chainId)]["TokenFarm"][0] : constants.AddressZero
 
-  const { abi, networks } = TokenFarm;
-  const tokenFarmInterface = new utils.Interface(abi);
-
-  const tokenFarmData = chainId ? networks[chainId] : undefined;
-
-  const { address: tokenFarmContractAddress } = tokenFarmData || {
-    address: constants.AddressZero,
-  };
+  const tokenFarmInterface = new utils.Interface(abi)
 
   const tokenFarmContract = new Contract(
     tokenFarmContractAddress,
     tokenFarmInterface
-  );
+  )
 
   const { send: stakeTokensSend, state: stakeTokensState } =
     useContractFunction(tokenFarmContract, "stakeTokens", {
       transactionName: "Stake tokens",
-    });
+    })
 
-  const erc20Interface = new utils.Interface(Erc20.abi);
+  const erc20Interface = new utils.Interface(Erc20.abi)
 
-  const tokenContract = new Contract(tokenAddress, erc20Interface);
+  const tokenContract = new Contract(tokenAddress, erc20Interface)
 
   const { send: approveErc20Send, state: approveErc20State } =
     useContractFunction(tokenContract, "approve", {
       transactionName: "Approve ERC20 transfer",
-    });
+    })
 
-  const [amountToStake, setAmountToStake] = useState("0");
+  const [amountToStake, setAmountToStake] = useState("0")
 
   useEffect(() => {
     if (approveErc20State.status === "Success") {
-      stakeTokensSend(amountToStake, tokenAddress);
+      stakeTokensSend(amountToStake, tokenAddress)
     }
-  }, [approveErc20State, amountToStake, tokenAddress]); // eslint-disable-line react-hooks/exhaustive-deps
+    // the dependency arry
+    // the code inside the useEffect anytime
+    // anything in this list changes
+    // if you want something to run when the component first runs
+    // you just have a blank list
+  }, [approveErc20State, amountToStake, tokenAddress]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const send = (amount: string) => {
-    setAmountToStake(amount);
-    return approveErc20Send(tokenFarmContractAddress, amount);
-  };
+    setAmountToStake(amount)
+    return approveErc20Send(tokenFarmContractAddress, amount)
+  }
 
-  const [state, setState] = useState(approveErc20State);
+  const [state, setState] = useState(approveErc20State)
 
   useEffect(() => {
     if (approveErc20State.status === "Success") {
-      setState(stakeTokensState);
+      setState(stakeTokensState)
     } else {
-      setState(approveErc20State);
+      setState(approveErc20State)
     }
-  }, [approveErc20State, stakeTokensState]);
+  }, [approveErc20State, stakeTokensState])
 
-  return { send, state };
-};
+  return { send, state }
+}

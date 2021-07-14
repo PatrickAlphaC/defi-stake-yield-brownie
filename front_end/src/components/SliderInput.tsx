@@ -62,6 +62,10 @@ export const SliderInput = ({
     },
   ];
 
+  // ... is a "Spread" operator
+  // standard javascript thing
+  // works on iterables
+  // expands a list
   return (
     <div {...rest}>
       {label && (

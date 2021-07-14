@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { useEthers } from "@usedapp/core";
-import { StakeForm } from "./StakeForm";
-import { Tab, makeStyles } from "@material-ui/core";
-import { TabContext, TabList, TabPanel } from "@material-ui/lab";
+import React, { useState } from "react"
+import { useEthers } from "@usedapp/core"
+import { StakeForm } from "./StakeForm"
+import { Tab, makeStyles } from "@material-ui/core"
+import { TabContext, TabList, TabPanel } from "@material-ui/lab"
 import {
   Panel,
   PanelHeading,
   PanelContent,
   ConnectionRequiredMsg,
-} from "../../components";
-import { Token } from "../Main";
-import { WalletBalance } from "./WalletBalance";
+} from "../../components"
+import { Token } from "../Main"
+import { WalletBalance } from "./WalletBalance"
 
 interface YourWalletProps {
-  supportedTokens: Array<Token>;
+  supportedTokens: Array<Token>
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -23,20 +23,25 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     gap: theme.spacing(4),
   },
-}));
+}))
 
 export const YourWallet = ({ supportedTokens }: YourWalletProps) => {
-  const [selectedTokenIndex, setSelectedTokenIndex] = useState<number>(0);
+  // wtf is this? 
+  // Reacts way of holding state between components 
+  // Could do it without <number> 
+  // saving state between renders of components 
+  // You'd have to pass it through as a prop to have another component use it 
+  const [selectedTokenIndex, setSelectedTokenIndex] = useState<number>(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
-    setSelectedTokenIndex(parseInt(newValue));
-  };
+    setSelectedTokenIndex(parseInt(newValue))
+  }
 
-  const { account } = useEthers();
+  const { account } = useEthers()
 
-  const isConnected = account !== undefined;
+  const isConnected = account !== undefined
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Panel>
@@ -52,7 +57,7 @@ export const YourWallet = ({ supportedTokens }: YourWalletProps) => {
                     value={index.toString()}
                     key={index}
                   />
-                );
+                )
               })}
             </TabList>
             {supportedTokens.map((token, index) => {
@@ -62,10 +67,12 @@ export const YourWallet = ({ supportedTokens }: YourWalletProps) => {
                     <WalletBalance
                       token={supportedTokens[selectedTokenIndex]}
                     />
+                    {/* this is the same as */}
+                    {/* The chainlink_defi props passing */}
                     <StakeForm token={supportedTokens[selectedTokenIndex]} />
                   </div>
                 </TabPanel>
-              );
+              )
             })}
           </TabContext>
         ) : (
@@ -73,5 +80,5 @@ export const YourWallet = ({ supportedTokens }: YourWalletProps) => {
         )}
       </PanelContent>
     </Panel>
-  );
-};
+  )
+}
