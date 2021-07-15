@@ -31,17 +31,18 @@ def deploy_token_farm_and_dapp_token(update_front_end=False):
             fau_token: get_contract("dai_usd_price_feed"),
             weth_token: get_contract("eth_usd_price_feed"),
         },
+        account,
     )
     if update_front_end:
         update_front_end()
     return token_farm, dapp_token
 
 
-def add_allowed_tokens(token_farm, dict_of_allowed_token):
+def add_allowed_tokens(token_farm, dict_of_allowed_token, account):
     for token in dict_of_allowed_token:
-        token_farm.addAllowedTokens(token.address)
+        token_farm.addAllowedTokens(token.address, {"from": account})
         tx = token_farm.setPriceFeedContract(
-            token.address, dict_of_allowed_token[token]
+            token.address, dict_of_allowed_token[token], {"from": account}
         )
         tx.wait(1)
     return token_farm

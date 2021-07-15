@@ -101,8 +101,9 @@ contract TokenFarm is ChainlinkClient, Ownable {
         if (uniqueTokensStaked[user] <= 0) {
             return 0;
         }
+        (uint256 price, uint8 decimals) = getTokenEthPrice(token);
         return
-            (stakingBalance[token][user] * getTokenEthPrice(token)) / (10**18);
+            (stakingBalance[token][user] * price) / (10**uint256(decimals));
     }
 
     // Issuing Tokens
@@ -118,7 +119,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
         }
     }
 
-    function getTokenEthPrice(address token) public view returns (uint256) {
+    function getTokenEthPrice(address token) public view returns (uint256, uint8) {
         address priceFeedAddress = tokenPriceFeedMapping[token];
         AggregatorV3Interface priceFeed = AggregatorV3Interface(
             priceFeedAddress
@@ -130,7 +131,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
             uint256 timeStamp,
             uint80 answeredInRound
         ) = priceFeed.latestRoundData();
-        return uint256(price);
+        return (uint256(price), priceFeed.decimals());
     }
 }
 

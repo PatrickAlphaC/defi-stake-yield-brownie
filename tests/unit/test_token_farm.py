@@ -2,6 +2,7 @@ from scripts.deploy import deploy_token_farm_and_dapp_token, KEPT_BALANCE
 from scripts.helpful_scripts import (
     LOCAL_BLOCKCHAIN_ENVIRONMENTS,
     INITIAL_PRICE_FEED_VALUE,
+    DECIMALS,
     get_account,
     get_contract,
 )
@@ -99,8 +100,11 @@ def test_get_user_total_balance_with_different_tokens_and_amounts(
         pytest.skip("Only for local testing")
     account = get_account()
     token_farm, dapp_token = test_stake_tokens(amount_staked)
+    assert token_farm.getUserTotalValue(account.address) == 7
     # Act
     token_farm.addAllowedTokens(random_erc20.address, {"from": account})
+    # The random_erc20 is going to represent DAI
+    # Since the other mocks auto deploy
     token_farm.setPriceFeedContract(
         random_erc20.address, get_contract("eth_usd_price_feed"), {"from": account}
     )
@@ -121,10 +125,28 @@ def test_get_token_eth_price():
     # Arrange
     if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         pytest.skip("Only for local testing")
-
     token_farm, dapp_token = deploy_token_farm_and_dapp_token()
     # Act / Assert
-    assert token_farm.getTokenEthPrice(dapp_token.address) == INITIAL_PRICE_FEED_VALUE
+    assert token_farm.getTokenEthPrice(dapp_token.address) == (
+        INITIAL_PRICE_FEED_VALUE,
+        DECIMALS,
+    )
+
+
+def test_get_user_token_staking_balance_eth_value(amount_staked):
+    # Arrange
+    if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        pytest.skip("Only for local testing")
+    account = get_account()
+    token_farm, dapp_token = deploy_token_farm_and_dapp_token()
+    # Act
+    dapp_token.approve(token_farm.address, amount_staked, {"from": account})
+    token_farm.stakeTokens(amount_staked, dapp_token.address, {"from": account})
+    # Assert
+    eth_balance_token = token_farm.getUserTokenStakingBalanceEthValue(
+        account.address, dapp_token.address
+    )
+    assert eth_balance_token == Web3.toWei(2000, "ether")
 
 
 def test_issue_tokens(amount_staked):

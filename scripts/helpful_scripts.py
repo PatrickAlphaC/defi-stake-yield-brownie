@@ -11,7 +11,8 @@ import eth_utils
 
 
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
-INITIAL_PRICE_FEED_VALUE = 2000
+INITIAL_PRICE_FEED_VALUE = 200000000000
+DECIMALS = 8
 
 contract_to_mock = {
     "eth_usd_price_feed": MockV3Aggregator,
@@ -122,7 +123,7 @@ def get_contract(contract_name):
     return contract
 
 
-def deploy_mocks(decimals=18, initial_value=INITIAL_PRICE_FEED_VALUE):
+def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_PRICE_FEED_VALUE):
     """
     Use this script if you want to deploy mocks to a testnet
     """
