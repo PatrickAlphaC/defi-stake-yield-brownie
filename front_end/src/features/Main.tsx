@@ -6,10 +6,10 @@ import { YourWallet } from "./yourWallet"
 import { TokenFarmContract } from "./tokenFarmContract"
 import { useEthers } from "@usedapp/core"
 import { constants } from "ethers"
-import DappToken from "../abis/DappToken.json"
+import DappToken from "../chain-info/DappToken.json"
 import { Snackbar, Typography, makeStyles } from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert"
-import networkMapping from "../abis/map.json"
+import networkMapping from "../chain-info/map.json"
 import brownieConfig from "../brownie-config-json.json"
 import helperConfig from "../helper-config.json"
 
@@ -36,10 +36,12 @@ export const Main = () => {
 
   const classes = useStyles()
   const networkName = chainId ? helperConfig[chainId] : "ganache"
+  console.log(typeof chainId)
   // We need to pull the DAPP token address from the .json file written to by Brownie
-  const dappTokenAddress = chainId ? networkMapping[String(chainId)]["TokenFarm"][0] : constants.AddressZero
+  const dappTokenAddress = chainId ? networkMapping[String(chainId)]["DappToken"][0] : constants.AddressZero
   const wethTokenAddress = chainId ? brownieConfig["networks"][networkName]["weth_token"] : constants.AddressZero
   const fauTokenAddress = chainId ? brownieConfig["networks"][networkName]["fau_token"] : constants.AddressZero
+  // console.log(dappTokenAddress)
   /**
    * Our single central location to store info on support tokens.
    * This is the only place you'll need to add a new token to get it to display in the UI!

@@ -11,8 +11,8 @@ import eth_utils
 
 
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
-INITIAL_PRICE_FEED_VALUE = 200000000000
-DECIMALS = 8
+INITIAL_PRICE_FEED_VALUE = 2000000000000000000000
+DECIMALS = 18
 
 contract_to_mock = {
     "eth_usd_price_feed": MockV3Aggregator,

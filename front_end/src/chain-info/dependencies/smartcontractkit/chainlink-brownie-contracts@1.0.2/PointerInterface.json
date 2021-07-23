@@ -1,14 +1,8 @@
 {
   "abi": [
     {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "node",
-          "type": "bytes32"
-        }
-      ],
-      "name": "addr",
+      "inputs": [],
+      "name": "getAddress",
       "outputs": [
         {
           "internalType": "address",
@@ -21,21 +15,21 @@
     }
   ],
   "allSourcePaths": {
-    "14": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.1.1/contracts/src/v0.6/vendor/ENSResolver.sol"
+    "9": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/PointerInterface.sol"
   },
   "ast": {
-    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.1.1/contracts/src/v0.6/vendor/ENSResolver.sol",
+    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/PointerInterface.sol",
     "exportedSymbols": {
-      "ENSResolver": [
-        2488
+      "PointerInterface": [
+        1617
       ]
     },
-    "id": 2489,
+    "id": 1618,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2480,
+        "id": 1611,
         "literals": [
           "solidity",
           "^",
@@ -43,81 +37,52 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:14"
+        "src": "32:23:9"
       },
       {
-        "abstract": true,
+        "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
-        "contractKind": "contract",
+        "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2488,
+        "id": 1617,
         "linearizedBaseContracts": [
-          2488
+          1617
         ],
-        "name": "ENSResolver",
+        "name": "PointerInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
             "documentation": null,
-            "functionSelector": "3b3b57de",
-            "id": 2487,
+            "functionSelector": "38cc4831",
+            "id": 1616,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "addr",
+            "name": "getAddress",
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 2483,
+              "id": 1612,
               "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 2482,
-                  "mutability": "mutable",
-                  "name": "node",
-                  "nodeType": "VariableDeclaration",
-                  "overrides": null,
-                  "scope": 2487,
-                  "src": "105:12:14",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bytes32",
-                    "typeString": "bytes32"
-                  },
-                  "typeName": {
-                    "id": 2481,
-                    "name": "bytes32",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "105:7:14",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bytes32",
-                      "typeString": "bytes32"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "104:14:14"
+              "parameters": [],
+              "src": "107:2:9"
             },
             "returnParameters": {
-              "id": 2486,
+              "id": 1615,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2485,
+                  "id": 1614,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 2487,
-                  "src": "148:7:14",
+                  "scope": 1616,
+                  "src": "133:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -125,10 +90,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2484,
+                    "id": 1613,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "148:7:14",
+                    "src": "133:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -139,20 +104,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "147:9:14"
+              "src": "132:9:9"
             },
-            "scope": 2488,
-            "src": "91:66:14",
+            "scope": 1617,
+            "src": "88:54:9",
             "stateMutability": "view",
-            "virtual": true,
-            "visibility": "public"
+            "virtual": false,
+            "visibility": "external"
           }
         ],
-        "scope": 2489,
-        "src": "57:102:14"
+        "scope": 1618,
+        "src": "57:87:9"
       }
     ],
-    "src": "32:128:14"
+    "src": "32:113:9"
   },
   "bytecode": "",
   "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
@@ -164,7 +129,7 @@
     },
     "version": "0.6.12+commit.27d51765"
   },
-  "contractName": "ENSResolver",
+  "contractName": "PointerInterface",
   "coverageMap": {
     "branches": {},
     "statements": {}
@@ -180,13 +145,13 @@
   },
   "offset": [
     57,
-    159
+    144
   ],
   "opcodes": "",
   "pcMap": {},
-  "sha1": "8fda4841522ba61c5837628d3d392966f8952d9a",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\nabstract contract ENSResolver {\n  function addr(bytes32 node) public view virtual returns (address);\n}\n",
+  "sha1": "0cd87c490fc61c6835427e005787cc4530e8a8d6",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\ninterface PointerInterface {\n  function getAddress() external view returns (address);\n}\n",
   "sourceMap": "",
-  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.1.1/contracts/src/v0.6/vendor/ENSResolver.sol",
-  "type": "contract"
+  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/interfaces/PointerInterface.sol",
+  "type": "interface"
 }

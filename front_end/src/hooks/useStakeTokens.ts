@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useContractFunction, useEthers } from "@usedapp/core"
-import TokenFarm from "../abis/TokenFarm.json"
-import Erc20 from "../abis/ERC20.json"
+import TokenFarm from "../chain-info/TokenFarm.json"
+import Erc20 from "../chain-info/ERC20.json"
 import { utils, constants } from "ethers"
 import { Contract } from "@ethersproject/contracts"
-import networkMapping from "../abis/map.json"
+import networkMapping from "../chain-info/map.json"
 
 /**
  * This hook is a bit messy but exposes a 'send' which makes two transactions.

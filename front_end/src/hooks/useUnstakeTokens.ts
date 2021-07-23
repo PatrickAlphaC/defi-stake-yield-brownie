@@ -1,8 +1,8 @@
 import { useContractFunction, useEthers } from "@usedapp/core"
-import TokenFarm from "../abis/TokenFarm.json"
+import TokenFarm from "../chain-info/TokenFarm.json"
 import { utils, constants } from "ethers"
 import { Contract } from "@ethersproject/contracts"
-import networkMapping from "../abis/map.json"
+import networkMapping from "../chain-info/map.json"
 
 /**
  * Expose { send, state } object to facilitate unstaking the user's tokens from the TokenFarm contract

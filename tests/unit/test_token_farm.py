@@ -100,7 +100,6 @@ def test_get_user_total_balance_with_different_tokens_and_amounts(
         pytest.skip("Only for local testing")
     account = get_account()
     token_farm, dapp_token = test_stake_tokens(amount_staked)
-    assert token_farm.getUserTotalValue(account.address) == 7
     # Act
     token_farm.addAllowedTokens(random_erc20.address, {"from": account})
     # The random_erc20 is going to represent DAI

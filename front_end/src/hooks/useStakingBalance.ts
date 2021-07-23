@@ -1,7 +1,7 @@
 import { useContractCall, useEthers } from "@usedapp/core"
-import TokenFarm from "../abis/TokenFarm.json"
+import TokenFarm from "../chain-info/TokenFarm.json"
 import { utils, BigNumber, constants } from "ethers"
-import networkMapping from "../abis/map.json"
+import networkMapping from "../chain-info/map.json"
 
 /**
  * Get the staking balance of a certain token by the user in our TokenFarm contract

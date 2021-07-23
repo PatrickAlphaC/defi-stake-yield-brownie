@@ -51,7 +51,7 @@ def add_allowed_tokens(token_farm, dict_of_allowed_token, account):
 def update_front_end():
     print("Updating front end...")
     # The Build
-    copy_folders_to_front_end("./build/contracts", "./front_end/src/abis")
+    copy_folders_to_front_end("./build/contracts", "./front_end/src/chain-info")
 
     # The Contracts
     copy_folders_to_front_end("./contracts", "./front_end/src/contracts")
@@ -59,11 +59,11 @@ def update_front_end():
     # The ERC20
     copy_files_to_front_end(
         "./build/contracts/dependencies/OpenZeppelin/openzeppelin-contracts@3.4.0/ERC20.json",
-        "./front_end/src/abis/ERC20.json",
+        "./front_end/src/chain-info/ERC20.json",
     )
     # The Map
     copy_files_to_front_end(
-        "./build/deployments/map.json", "./front_end/src/abis/map.json",
+        "./build/deployments/map.json", "./front_end/src/chain-info/map.json",
     )
 
     # The Config, converted from YAML to JSON
@@ -89,4 +89,4 @@ def copy_files_to_front_end(src, dest):
 
 
 def main():
-    deploy_token_farm_and_dapp_token()
+    deploy_token_farm_and_dapp_token(update_front_end=True)
