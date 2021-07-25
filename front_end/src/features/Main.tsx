@@ -1,3 +1,5 @@
+/* eslint-disable spaced-comment */
+/// <reference types="react-scripts" />
 import React, { useEffect, useState } from "react"
 import eth from "../eth.png"
 import dapp from "../dapp.png"

@@ -2,8 +2,7 @@ import React from "react"
 import { Header } from "./features/Header"
 import { Main } from "./features/Main"
 import { ChainId, DAppProvider } from "@usedapp/core"
-import { Container, ThemeProvider } from "@material-ui/core"
-import customTheme from "./themes/chainlink-blue"
+import { Container } from "@material-ui/core"
 
 export const App = () => {
   return (

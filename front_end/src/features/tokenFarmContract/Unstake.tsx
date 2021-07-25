@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import {
   Button,
   CircularProgress,
   Snackbar,
   makeStyles,
-} from "@material-ui/core";
-import { Token } from "../Main";
-import { useUnstakeTokens, useStakingBalance } from "../../hooks";
-import Alert from "@material-ui/lab/Alert";
-import { useNotifications } from "@usedapp/core";
-import { formatUnits } from "@ethersproject/units";
-import { BalanceMsg } from "../../components";
+} from "@material-ui/core"
+import { Token } from "../Main"
+import { useUnstakeTokens, useStakingBalance } from "../../hooks"
+import Alert from "@material-ui/lab/Alert"
+import { useNotifications } from "@usedapp/core"
+import { formatUnits } from "@ethersproject/units"
+import { BalanceMsg } from "../../components"
 
 export interface UnstakeFormProps {
-  token: Token;
+  token: Token
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -24,31 +24,31 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
     gap: theme.spacing(2),
   },
-}));
+}))
 
 export const Unstake = ({ token }: UnstakeFormProps) => {
-  const { image, address: tokenAddress, name } = token;
+  const { image, address: tokenAddress, name } = token
 
-  const { notifications } = useNotifications();
+  const { notifications } = useNotifications()
 
-  const balance = useStakingBalance(tokenAddress);
+  const balance = useStakingBalance(tokenAddress)
 
   const formattedBalance: number = balance
     ? parseFloat(formatUnits(balance, 18))
-    : 0;
+    : 0
 
   const { send: unstakeTokensSend, state: unstakeTokensState } =
-    useUnstakeTokens();
+    useUnstakeTokens()
 
   const handleUnstakeSubmit = () => {
-    return unstakeTokensSend(tokenAddress);
-  };
+    return unstakeTokensSend(tokenAddress)
+  }
 
-  const [showUnstakeSuccess, setShowUnstakeSuccess] = useState(false);
+  const [showUnstakeSuccess, setShowUnstakeSuccess] = useState(false)
 
   const handleCloseSnack = () => {
-    showUnstakeSuccess && setShowUnstakeSuccess(false);
-  };
+    showUnstakeSuccess && setShowUnstakeSuccess(false)
+  }
 
   useEffect(() => {
     if (
@@ -58,15 +58,14 @@ export const Unstake = ({ token }: UnstakeFormProps) => {
           notification.transactionName === "Unstake tokens"
       ).length > 0
     ) {
-      !showUnstakeSuccess && setShowUnstakeSuccess(true);
+      !showUnstakeSuccess && setShowUnstakeSuccess(true)
     }
-  }, [notifications, showUnstakeSuccess]);
+  }, [notifications, showUnstakeSuccess])
 
-  const isMining = unstakeTokensState.status === "Mining";
+  const isMining = unstakeTokensState.status === "Mining"
 
-  const hasZeroAmount = formattedBalance === 0;
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <>
@@ -81,7 +80,7 @@ export const Unstake = ({ token }: UnstakeFormProps) => {
           variant="contained"
           size="large"
           onClick={handleUnstakeSubmit}
-          disabled={isMining || hasZeroAmount}
+          disabled={isMining}
         >
           {isMining ? <CircularProgress size={26} /> : `Unstake all ${name}`}
         </Button>
@@ -96,5 +95,5 @@ export const Unstake = ({ token }: UnstakeFormProps) => {
         </Alert>
       </Snackbar>
     </>
-  );
-};
+  )
+}
