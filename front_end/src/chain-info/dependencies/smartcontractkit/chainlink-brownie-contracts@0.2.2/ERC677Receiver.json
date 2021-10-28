@@ -24,10 +24,10 @@
     }
   ],
   "allSourcePaths": {
-    "4": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol"
+    "4": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol"
   },
   "ast": {
-    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
+    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
     "exportedSymbols": {
       "ERC677Receiver": [
         488
@@ -206,6 +206,6 @@
   "sha1": "246d2f303f792a28e088c6c8d70d8c920b0f4122",
   "source": "pragma solidity ^0.4.8;\n\n\ncontract ERC677Receiver {\n  function onTokenTransfer(address _sender, uint _value, bytes _data);\n}\n",
   "sourceMap": "",
-  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
+  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
   "type": "contract"
 }

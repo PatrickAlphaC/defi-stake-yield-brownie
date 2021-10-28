@@ -229,14 +229,14 @@
     }
   ],
   "allSourcePaths": {
-    "0": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/ERC677Token.sol",
-    "1": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20.sol",
-    "2": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
-    "3": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC677.sol",
-    "4": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol"
+    "0": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/ERC677Token.sol",
+    "1": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20.sol",
+    "2": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
+    "3": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677.sol",
+    "4": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol"
   },
   "ast": {
-    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/ERC677Token.sol",
+    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/ERC677Token.sol",
     "exportedSymbols": {
       "ERC677Token": [
         224
@@ -257,7 +257,7 @@
         "src": "0:24:0"
       },
       {
-        "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC677.sol",
+        "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677.sol",
         "file": "./interfaces/ERC677.sol",
         "id": 139,
         "nodeType": "ImportDirective",
@@ -268,7 +268,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
+        "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
         "file": "./interfaces/ERC677Receiver.sol",
         "id": 140,
         "nodeType": "ImportDirective",
@@ -1393,10 +1393,10 @@
     "statements": {}
   },
   "dependencies": [
-    "smartcontractkit/chainlink-brownie-contracts@1.0.2/ERC20",
-    "smartcontractkit/chainlink-brownie-contracts@1.0.2/ERC20Basic",
-    "smartcontractkit/chainlink-brownie-contracts@1.0.2/ERC677",
-    "smartcontractkit/chainlink-brownie-contracts@1.0.2/ERC677Receiver"
+    "smartcontractkit/chainlink-brownie-contracts@0.2.2/ERC20",
+    "smartcontractkit/chainlink-brownie-contracts@0.2.2/ERC20Basic",
+    "smartcontractkit/chainlink-brownie-contracts@0.2.2/ERC677",
+    "smartcontractkit/chainlink-brownie-contracts@0.2.2/ERC677Receiver"
   ],
   "deployedBytecode": "",
   "deployedSourceMap": "",
@@ -1422,6 +1422,6 @@
   "sha1": "43e4d437033d32cefa3f0b3ed8a25c2b80f4a929",
   "source": "pragma solidity ^0.4.11;\n\n\nimport \"./interfaces/ERC677.sol\";\nimport \"./interfaces/ERC677Receiver.sol\";\n\n\ncontract ERC677Token is ERC677 {\n\n  /**\n  * @dev transfer token to a contract address with additional data if the recipient is a contact.\n  * @param _to The address to transfer to.\n  * @param _value The amount to be transferred.\n  * @param _data The extra data to be passed to the receiving contract.\n  */\n  function transferAndCall(address _to, uint _value, bytes _data)\n    public\n    returns (bool success)\n  {\n    super.transfer(_to, _value);\n    Transfer(msg.sender, _to, _value, _data);\n    if (isContract(_to)) {\n      contractFallback(_to, _value, _data);\n    }\n    return true;\n  }\n\n\n  // PRIVATE\n\n  function contractFallback(address _to, uint _value, bytes _data)\n    private\n  {\n    ERC677Receiver receiver = ERC677Receiver(_to);\n    receiver.onTokenTransfer(msg.sender, _value, _data);\n  }\n\n  function isContract(address _addr)\n    private\n    returns (bool hasCode)\n  {\n    uint length;\n    assembly { length := extcodesize(_addr) }\n    return length > 0;\n  }\n\n}\n",
   "sourceMap": "",
-  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/ERC677Token.sol",
+  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/ERC677Token.sol",
   "type": "contract"
 }

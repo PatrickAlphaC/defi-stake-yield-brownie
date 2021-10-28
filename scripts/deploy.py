@@ -9,7 +9,7 @@ from web3 import Web3
 KEPT_BALANCE = Web3.toWei(100, "ether")
 
 
-def deploy_token_farm_and_dapp_token(update_front_end=False):
+def deploy_token_farm_and_dapp_token(update_front_end_flag=False):
     account = get_account()
     dapp_token = DappToken.deploy({"from": account})
     token_farm = TokenFarm.deploy(
@@ -18,7 +18,9 @@ def deploy_token_farm_and_dapp_token(update_front_end=False):
         publish_source=config["networks"][network.show_active()]["verify"],
     )
     tx = dapp_token.transfer(
-        token_farm.address, dapp_token.totalSupply() - KEPT_BALANCE, {"from": account},
+        token_farm.address,
+        dapp_token.totalSupply() - KEPT_BALANCE,
+        {"from": account},
     )
     tx.wait(1)
     fau_token = get_contract("fau_token")
@@ -33,7 +35,7 @@ def deploy_token_farm_and_dapp_token(update_front_end=False):
         },
         account,
     )
-    if update_front_end:
+    if update_front_end_flag:
         update_front_end()
     return token_farm, dapp_token
 
@@ -58,12 +60,13 @@ def update_front_end():
 
     # The ERC20
     copy_files_to_front_end(
-        "./build/contracts/dependencies/OpenZeppelin/openzeppelin-contracts@3.4.0/ERC20.json",
+        "./build/contracts/dependencies/OpenZeppelin/openzeppelin-contracts@4.3.2/ERC20.json",
         "./front_end/src/chain-info/ERC20.json",
     )
     # The Map
     copy_files_to_front_end(
-        "./build/deployments/map.json", "./front_end/src/chain-info/map.json",
+        "./build/deployments/map.json",
+        "./front_end/src/chain-info/map.json",
     )
 
     # The Config, converted from YAML to JSON
@@ -89,4 +92,4 @@ def copy_files_to_front_end(src, dest):
 
 
 def main():
-    deploy_token_farm_and_dapp_token(update_front_end=True)
+    deploy_token_farm_and_dapp_token(update_front_end_flag=True)

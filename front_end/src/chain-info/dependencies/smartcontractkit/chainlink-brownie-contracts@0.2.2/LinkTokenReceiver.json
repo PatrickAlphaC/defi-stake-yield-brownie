@@ -38,10 +38,10 @@
     }
   ],
   "allSourcePaths": {
-    "0": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/LinkTokenReceiver.sol"
+    "0": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/LinkTokenReceiver.sol"
   },
   "ast": {
-    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/LinkTokenReceiver.sol",
+    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/LinkTokenReceiver.sol",
     "exportedSymbols": {
       "LinkTokenReceiver": [
         610
@@ -1675,6 +1675,6 @@
   "sha1": "43e5bd86a6d0c03cbf39e613cb65e18eb09a7544",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\nabstract contract LinkTokenReceiver {\n\n  bytes4 constant private ORACLE_REQUEST_SELECTOR = 0x40429946;\n  uint256 constant private SELECTOR_LENGTH = 4;\n  uint256 constant private EXPECTED_REQUEST_WORDS = 2;\n  uint256 constant private MINIMUM_REQUEST_LENGTH = SELECTOR_LENGTH + (32 * EXPECTED_REQUEST_WORDS);\n  /**\n   * @notice Called when LINK is sent to the contract via `transferAndCall`\n   * @dev The data payload's first 2 words will be overwritten by the `_sender` and `_amount`\n   * values to ensure correctness. Calls oracleRequest.\n   * @param _sender Address of the sender\n   * @param _amount Amount of LINK sent (specified in wei)\n   * @param _data Payload of the transaction\n   */\n  function onTokenTransfer(\n    address _sender,\n    uint256 _amount,\n    bytes memory _data\n  )\n    public\n    onlyLINK\n    validRequestLength(_data)\n    permittedFunctionsForLINK(_data)\n  {\n    assembly {\n      // solhint-disable-next-line avoid-low-level-calls\n      mstore(add(_data, 36), _sender) // ensure correct sender is passed\n      // solhint-disable-next-line avoid-low-level-calls\n      mstore(add(_data, 68), _amount)    // ensure correct amount is passed\n    }\n    // solhint-disable-next-line avoid-low-level-calls\n    (bool success, ) = address(this).delegatecall(_data); // calls oracleRequest\n    require(success, \"Unable to create request\");\n  }\n\n  function getChainlinkToken() public view virtual returns (address);\n\n  /**\n   * @dev Reverts if not sent from the LINK token\n   */\n  modifier onlyLINK() {\n    require(msg.sender == getChainlinkToken(), \"Must use LINK token\");\n    _;\n  }\n\n  /**\n   * @dev Reverts if the given data does not begin with the `oracleRequest` function selector\n   * @param _data The data payload of the request\n   */\n  modifier permittedFunctionsForLINK(bytes memory _data) {\n    bytes4 funcSelector;\n    assembly {\n      // solhint-disable-next-line avoid-low-level-calls\n      funcSelector := mload(add(_data, 32))\n    }\n    require(funcSelector == ORACLE_REQUEST_SELECTOR, \"Must use whitelisted functions\");\n    _;\n  }\n\n  /**\n   * @dev Reverts if the given payload is less than needed to create a request\n   * @param _data The request payload\n   */\n  modifier validRequestLength(bytes memory _data) {\n    require(_data.length >= MINIMUM_REQUEST_LENGTH, \"Invalid request length\");\n    _;\n  }\n}\n",
   "sourceMap": "",
-  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.6/LinkTokenReceiver.sol",
+  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/LinkTokenReceiver.sol",
   "type": "contract"
 }

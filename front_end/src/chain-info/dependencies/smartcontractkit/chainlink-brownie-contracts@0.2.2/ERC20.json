@@ -175,11 +175,11 @@
     }
   ],
   "allSourcePaths": {
-    "1": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20.sol",
-    "2": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20Basic.sol"
+    "1": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20.sol",
+    "2": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20Basic.sol"
   },
   "ast": {
-    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20.sol",
+    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         532
@@ -200,7 +200,7 @@
         "src": "0:24:1"
       },
       {
-        "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
+        "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
         "file": "./ERC20Basic.sol",
         "id": 492,
         "nodeType": "ImportDirective",
@@ -722,7 +722,7 @@
     "statements": {}
   },
   "dependencies": [
-    "smartcontractkit/chainlink-brownie-contracts@1.0.2/ERC20Basic"
+    "smartcontractkit/chainlink-brownie-contracts@0.2.2/ERC20Basic"
   ],
   "deployedBytecode": "",
   "deployedSourceMap": "",
@@ -740,6 +740,6 @@
   "sha1": "d874eb6cc102a22c47f7e7dffaf2e26a53f95d98",
   "source": "pragma solidity ^0.4.11;\n\n\nimport { ERC20Basic as linkERC20Basic } from \"./ERC20Basic.sol\";\n\n\n/**\n * @title ERC20 interface\n * @dev see https://github.com/ethereum/EIPs/issues/20\n */\ncontract ERC20 is linkERC20Basic {\n  function allowance(address owner, address spender) constant returns (uint256);\n  function transferFrom(address from, address to, uint256 value) returns (bool);\n  function approve(address spender, uint256 value) returns (bool);\n  event Approval(address indexed owner, address indexed spender, uint256 value);\n}\n",
   "sourceMap": "",
-  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20.sol",
+  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20.sol",
   "type": "contract"
 }

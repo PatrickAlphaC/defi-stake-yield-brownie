@@ -80,10 +80,10 @@
     }
   ],
   "allSourcePaths": {
-    "2": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20Basic.sol"
+    "2": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20Basic.sol"
   },
   "ast": {
-    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
+    "absolutePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
     "exportedSymbols": {
       "ERC20Basic": [
         632
@@ -469,6 +469,6 @@
   "sha1": "b3a598f8444702646cc626d7ffd4d8127c0164c7",
   "source": "pragma solidity ^0.4.11;\n\n\n/**\n * @title ERC20Basic\n * @dev Simpler version of ERC20 interface\n * @dev see https://github.com/ethereum/EIPs/issues/179\n */\ncontract ERC20Basic {\n  uint256 public totalSupply;\n  function balanceOf(address who) constant returns (uint256);\n  function transfer(address to, uint256 value) returns (bool);\n  event Transfer(address indexed from, address indexed to, uint256 value);\n}\n",
   "sourceMap": "",
-  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.0.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
+  "sourcePath": "/Users/patrick/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
   "type": "contract"
 }
