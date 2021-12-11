@@ -16,6 +16,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
     mapping(address => uint256) public uniqueTokensStaked;
     mapping(address => address) public tokenPriceFeedMapping;
     address[] public allowedTokens;
+    bool public tokenIsAllowedFlag;
 
     constructor(address _dappTokenAddress) public {
         dappToken = IERC20(_dappTokenAddress);
@@ -82,10 +83,12 @@ contract TokenFarm is ChainlinkClient, Ownable {
             allowedTokensIndex++
         ) {
             if (allowedTokens[allowedTokensIndex] == token) {
-                return true;
+                tokenIsAllowedFlag = true;
+                return tokenIsAllowedFlag;
             }
         }
-        return false;
+        tokenIsAllowedFlag = false;
+        return tokenIsAllowedFlag;
     }
 
     function updateUniqueTokensStaked(address user, address token) internal {
