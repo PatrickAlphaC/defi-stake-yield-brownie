@@ -25,6 +25,17 @@ def test_add_allowed_tokens():
     with pytest.raises(exceptions.VirtualMachineError):
         token_farm.addAllowedTokens(dapp_token.address, {"from": non_owner})
 
+def test_token_is_allowed():
+    # Arrange.
+    if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        pytest.skip("Only for local testing!")
+    account = get_account()
+    token_farm, dapp_token = deploy_token_farm_and_dapp_token()
+    # Act.
+    test_add_allowed_tokens()
+    token_farm.tokenIsAllowed(dapp_token, {"from": account})
+    # Assert.
+    assert token_farm.tokenIsAllowedFlag() == True
 
 def test_set_price_feed_contract():
     # Arrange
