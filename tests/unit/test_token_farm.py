@@ -35,7 +35,7 @@ def test_token_is_allowed():
     test_add_allowed_tokens()
     token_is_allowed = token_farm.tokenIsAllowed(dapp_token, {"from": account})
     # Assert.
-    assert token_is_allowed == True
+    assert token_is_allowed is True
 
 def test_set_price_feed_contract():
     # Arrange
