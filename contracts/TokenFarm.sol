@@ -75,7 +75,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
         return totalValue;
     }
 
-    function tokenIsAllowed(address token) public returns (bool) {
+    function tokenIsAllowed(address token) public view returns (bool) {
         for (
             uint256 allowedTokensIndex = 0;
             allowedTokensIndex < allowedTokens.length;
