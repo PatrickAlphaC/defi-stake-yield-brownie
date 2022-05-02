@@ -33,6 +33,8 @@ contract TokenFarm is ChainlinkClient, Ownable {
     }
 
     function stakeTokens(uint256 _amount, address token) public {
+     // NOTE:
+     // This is vulnerable to a reentrancy attack!!!
         // Require amount greater than 0
         require(_amount > 0, "amount cannot be 0");
         require(tokenIsAllowed(token), "Token currently isn't allowed");
