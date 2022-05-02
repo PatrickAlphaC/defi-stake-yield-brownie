@@ -50,6 +50,8 @@ contract TokenFarm is ChainlinkClient, Ownable {
 
     // Unstaking Tokens (Withdraw)
     function unstakeTokens(address token) public {
+     // NOTE:
+     // This is vulnerable to a reentrancy attack!!!
         // Fetch staking balance
         uint256 balance = stakingBalance[token][msg.sender];
         require(balance > 0, "staking balance cannot be 0");
